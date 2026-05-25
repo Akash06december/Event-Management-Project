@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Event Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background-color: #f5f7fb;
+        }
+
+        .event-card{
+            border: none;
+            border-radius: 20px;
+        }
+
+        .event-title{
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .event-info{
+            font-size: 1.1rem;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-lg event-card p-5">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <h1 class="event-title">
+                        <%= foundEvent.title %>
+                    </h1>
+
+                    <span class="badge bg-dark fs-6">
+                        <%= foundEvent.category %>
+                    </span>
+
+                </div>
+
+                <p class="lead text-secondary mb-4">
+                    <%= foundEvent.description %>
+                </p>
+
+                <hr>
+
+                <div class="mt-4">
+
+                    <p class="event-info">
+                        📅 <strong>Date:</strong>
+                        <%= foundEvent.date %>
+                    </p>
+
+                    <p class="event-info">
+                        📍 <strong>Venue:</strong>
+                        <%= foundEvent.venue %>
+                    </p>
+
+                </div>
+
+                <div class="mt-5 d-flex gap-3">
+
+                    <a href="/events" class="btn btn-dark px-4">
+                        ← Back
+                    </a>
+
+                    <form
+                        action="/events/<%= foundEvent.id %>?_method=DELETE"
+                        method="POST"
+                    >
+
+                        <button class="btn btn-danger px-4">
+                            Delete Event
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
