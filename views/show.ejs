@@ -86,7 +86,10 @@
                         action="/events/<%= foundEvent.id %>?_method=DELETE"
                         method="POST"
                     >
-
+                    <a
+                    href="/events/<%= foundEvent.id %>/edit"
+                    class="btn btn-warning px-3"
+                    >Edit Event</a>
                         <button class="btn btn-danger px-4">
                             Delete Event
                         </button>

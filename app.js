@@ -54,6 +54,12 @@ app.get("/events/:id", (req,res) => {
 
 });
 
+app.get("/events/:id/edit",(req,res)=>{
+    const {id} = req.params;
+    const foundEvent = events.find((event) => event.id == id);
+    res.render("edit",{foundEvent});
+})
+
 app.delete("/events/:id",(req,res)=>{
     const {id} = req.params;
 
@@ -63,7 +69,33 @@ app.delete("/events/:id",(req,res)=>{
         events.push(event);
     });
     res.redirect("/events")
-})
+});
+
+app.patch("/events/:id", (req, res) => {
+
+    const { id } = req.params;
+
+    const foundEvent = events.find(
+        (event) => event.id == id
+    );
+
+    const {
+        title,
+        description,
+        date,
+        venue,
+        category
+    } = req.body;
+
+    foundEvent.title = title;
+    foundEvent.description = description;
+    foundEvent.date = date;
+    foundEvent.venue = venue;
+    foundEvent.category = category;
+
+    res.redirect(`/events/${id}`);
+
+});
 
 
 app.listen(port,()=>{
