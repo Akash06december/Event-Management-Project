@@ -97,7 +97,22 @@ app.patch("/events/:id", (req, res) => {
 
 });
 
+app.post("/events/:id/register",(req,res)=>{
+    const {id} = req.params;
+    const foundEvent = events.find(
+        (event) => event.id == id
+    );
 
-app.listen(port,()=>{
+    const {name,email} = req.body;
+    const newRegistration = {
+        name,
+        email
+    };
+
+    foundEvent.registrations.push(newRegistration);
+    res.redirect(`/events/${id}`);
+});
+
+app.listen(port,()=>{   
     console.log("Server Started")
 });

@@ -5,7 +5,8 @@ const events = [
         description: "24-hour coding competition",
         date: "2026-06-15",
         venue: "Main Auditorium",
-        category: "Technical"
+        category: "Technical",
+        registrations:[]
     },
 
     {
@@ -14,7 +15,8 @@ const events = [
         description: "Dance, music and fun events",
         date: "2026-07-10",
         venue: "College Ground",
-        category: "Cultural"
+        category: "Cultural",
+        registrations:[]
     }
 ];
 
