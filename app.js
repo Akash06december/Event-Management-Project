@@ -21,10 +21,44 @@ app.get("/events/new",(req,res)=>{
     res.render("new");
 });
 
-app.get("/events" , (req,res)=>{
-    res.render("events", {events});
-});
+app.get("/events", (req, res) => {
 
+    let filteredEvents = [...events];
+
+    let { search, category } = req.query;
+
+    // HANDLE EMPTY VALUES
+
+    search = search ? search.trim() : "";
+    category = category ? category.trim() : "";
+
+    // SEARCH FILTER  -> search by the title of the event
+
+    if(search){
+        filteredEvents = filteredEvents.filter((event) => {
+            return event.title.toLowerCase().includes(search.toLowerCase());
+
+        });
+
+    }
+
+    // CATEGORY FILTER -> Can be used to search by category if user needs to
+
+    if(category && category !== "All"){
+        filteredEvents = filteredEvents.filter((event) => {
+            return event.category.toLowerCase() ===category.toLowerCase();
+
+        });
+
+    }
+
+    res.render("events", {
+        events: filteredEvents,
+        search,
+        category
+    });
+
+});
 
 app.post("/events", (req, res) => {
 
